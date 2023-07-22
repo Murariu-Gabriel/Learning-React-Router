@@ -5,10 +5,10 @@ import Product from "./Pages/Product"
 import NewProduct from "./Pages/NewProduct"
 import NotFound from "./Pages/NotFound"
 import { Link, Route, Routes } from "react-router-dom"
+import ProductLayout from "./Productlayout"
 
 function App() {
- 
-
+  
   return (
     <>
       <nav>
@@ -27,9 +27,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/productsPage" element={<ProductsPage />} />
+        <Route path="/productsPage" element={<ProductLayout/>}>
+          <Route index element={<ProductsPage />} />
+          <Route path=":id" element={<Product />} />
+          <Route path="new" element={<NewProduct />} />
+        </Route>
+        {/* <Route path="/productsPage" element={<ProductsPage />} />
         <Route path="/productsPage/:id" element={<Product />} />
-        <Route path="/productsPage/new" element={<NewProduct />} />
+        <Route path="/productsPage/new" element={<NewProduct />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
