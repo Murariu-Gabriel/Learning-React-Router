@@ -6,13 +6,13 @@ React routing, a method of navigating through website pages based on url links.
 
 - We need too import browser router
 
-``` JS
-import { BrowserRouter } from "react-router-dom" 
+```JS
+import { BrowserRouter } from "react-router-dom"
 ```
 
 - We need to wrap our root component in a browser router component that allows us to use the benefits of it
 
-``` JS
+```JS
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 - In our App.jsx we need to import some components from react router
 
-``` JS
+```JS
 import { Link, Route, Routes } from "react-router-dom"
 ```
 
@@ -35,7 +35,7 @@ import { Link, Route, Routes } from "react-router-dom"
 
 - And in Routes we use route to create our routes by hardcoding a path and giving the component to render
 
-``` Js
+```Js
     <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/categories" element={<Categories />} />
@@ -47,7 +47,7 @@ import { Link, Route, Routes } from "react-router-dom"
 
 - Now to access these paths we have another route element named link
 
-``` JS
+```JS
 <nav>
     <ul>
         <li>
@@ -62,12 +62,12 @@ import { Link, Route, Routes } from "react-router-dom"
     </ul>
 </nav>
 ```
-- In react router the Link component replaces our good old anchor tag and renders for us the component with the specified path
 
+- In react router the Link component replaces our good old anchor tag and renders for us the component with the specified path
 
 - Coming back to route we also have 3 other methods
 
-``` JS
+```JS
 <Route path="/productsPage/:id" element={<Product />} />
 <Route path="/productsPage/new" element={<NewProduct />} />
 <Route path="*" element={<NotFound />} />
@@ -75,7 +75,6 @@ import { Link, Route, Routes } from "react-router-dom"
 ```
 
 - Product page :id is a way to dynamically generate paths, inside ProductPage component we have a couple of Link components. Now when we access a link inside the ProductPage component because they have a number after the usual path for product page the route with id will be selected.
-
 
 - The Product component is going to render but we don t know which product we have selected so to render that we can import a react router hook names useParams to get parameters from the path
 
@@ -93,16 +92,48 @@ export default Product
 
 ```
 
-- Continuing on the subject of paths here we have hardcoded a new path with product page, this is done just to show that react router 6 now knows how interpret paths and to distinguish paths that actually have an id or not and the fact that the route under the one with id is hardcoded 
+- Continuing on the subject of paths here we have hardcoded a new path with product page, this is done just to show that react router 6 now knows how interpret paths and to distinguish paths that actually have an id or not and the fact that the route under the one with id is hardcoded
 
-
-``` JS
+```JS
 <Route path="/productsPage/:id" element={<Product />} />
 <Route path="/productsPage/new" element={<NewProduct />} />
 <Route path="*" element={<NotFound />} />
 
 ```
 
-- Our last Route component is for rendering errors the path="*" and the star works kind of like regex validation, if any path introduced does not match the ones in the router the one with star will match and send us to the error path
+- Our last Route component is for rendering errors the path="\*" and the star works kind of like regex validation, if any path introduced does not match the ones in the router the one with star will match and send us to the error path
 
+## Nested Routes
 
+- Here we need to declare a parent route witch takes the main path, the routes inside the main path wil bee the sub paths to the main path.
+
+- The sub paths don't need slashes anymore, that will cause errors
+
+- Also to be able to access the the main path only without any of the sub paths we need to ma a route that leads us to the main path by writing index in the route
+
+```JS
+
+<Route path="/productsPage" element={<ProductLayout/>}>
+  <Route index element={<ProductsPage />} />
+  <Route path=":id" element={<Product />} />
+  <Route path="new" element={<NewProduct />} />
+</Route>
+
+```
+
+- The sub paths can be accessed by the url, if we want them to have access by click we could just have write them in one of our components. If we want them to appear in multiple components we could make a new component containing the sub paths and pass it to the Parent route as an element.
+
+```JS
+<>
+  <Link to="/productsPage/1">Product nr 1</Link>
+  <br />
+  <Link to="/productsPage/2">Product nr 2</Link>
+  <br />
+  <Link to="/productsPage/new">New Product</Link>
+  <Outlet/>
+</>
+```
+
+- one important is the Outlet component without it our index path would show only these links and would not render the index.
+
+- Outlet allows us to render the index and the layout when we access the index from which we can navigate
