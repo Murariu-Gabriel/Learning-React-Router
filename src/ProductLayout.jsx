@@ -8,7 +8,7 @@ const ProductLayout = () => {
       <Link to="/productsPage/2">Product nr 2</Link>
       <br />
       <Link to="/productsPage/new">New Product</Link>
-      <Outlet/>
+      <Outlet context={{logic: "SomeFunction"}}/>
     </>
   )
 }

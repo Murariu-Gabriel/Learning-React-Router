@@ -6,11 +6,18 @@ import NewProduct from "./Pages/NewProduct"
 import NotFound from "./Pages/NotFound"
 import { Link, Route, Routes } from "react-router-dom"
 import ProductLayout from "./Productlayout"
+import ProductsRoutes from "./ProductsRoutes"
 
 function App() {
   
   return (
     <>
+      {/* <Routes 
+      // location="/productsPage"
+      >
+        <Route path="/productsPage" element={<h1>EXTRA CONTENT</h1>} />
+      </Routes> */}
+
       <nav>
         <ul>
           <li>
@@ -27,14 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/productsPage" element={<ProductLayout/>}>
-          <Route index element={<ProductsPage />} />
-          <Route path=":id" element={<Product />} />
-          <Route path="new" element={<NewProduct />} />
-        </Route>
-        {/* <Route path="/productsPage" element={<ProductsPage />} />
-        <Route path="/productsPage/:id" element={<Product />} />
-        <Route path="/productsPage/new" element={<NewProduct />} /> */}
+        <Route path="/productsPage/*" element={<ProductsRoutes/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
