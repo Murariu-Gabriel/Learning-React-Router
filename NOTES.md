@@ -137,3 +137,37 @@ export default Product
 - one important is the Outlet component without it our index path would show only these links and would not render the index.
 
 - Outlet allows us to render the index and the layout when we access the index from which we can navigate
+
+## More on nesting
+
+- instead of nesting in a route we can use our element attribute for passing our path by making a component for them and in it pass our previous nesting
+
+```JS
+const ProductsRoutes = () => {
+  return (
+    <>
+    <Routes>
+        <Route element={<ProductLayout/>}>
+            <Route index element={<ProductsPage />} />
+            <Route path=":id" element={<Product />} />
+            <Route path="new" element={<NewProduct />} />
+        </Route>
+    </Routes>
+    </>
+  )
+}
+```
+
+- The path inside this main route needs to contain a /* after because that mathes all our side paths
+
+```JS
+  <Route path="/productsPage/*" element={<ProductsRoutes/>}/>
+```
+
+- What is very interesting here is that now we have a separate component that we can use in multiple places and at the same time we also have the layout that makes our sub paths accessible 
+
+```JS
+  <Outlet context={{logic: "SomeFunction"}}/>
+```
+
+- And with out Outlet component that is made to figure out what component from he layout to render we can also pass down logic into each sub path component to use if needed
