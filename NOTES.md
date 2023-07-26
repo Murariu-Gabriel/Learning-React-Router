@@ -171,3 +171,45 @@ const ProductsRoutes = () => {
 ```
 
 - And with out Outlet component that is made to figure out what component from he layout to render we can also pass down logic into each sub path component to use if needed
+
+## UseRoutes hook
+
+- This is an alternative way to render routes using a js object. It s a normal object which contains exactly the same thing nesting Routes would, paths, elements children but they are nested in a object.
+
+```JS
+element = useRoutes([
+  {
+    path: "/",
+    element: <ProductLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: ":id",
+        element: <Product />,
+      },
+      {
+        path: "new",
+        element: <NewProduct />,
+      },
+    ],
+  },
+])
+
+
+  return (
+    <>
+      {element}
+    </>
+```
+## The Link tag atributes
+
+- Replace attribute: removes current page from history. Use case: deleting login from history because we don t want to let the user go back to that
+
+- reloadDocument: It reloads the entire page
+
+- state: allows us to pass data down links
+
+
