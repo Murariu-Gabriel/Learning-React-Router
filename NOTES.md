@@ -204,7 +204,7 @@ element = useRoutes([
       {element}
     </>
 ```
-## The Link tag atributes
+## The Link component attributes
 
 - Replace attribute: removes current page from history. Use case: deleting login from history because we don t want to let the user go back to that
 
@@ -213,3 +213,33 @@ element = useRoutes([
 - state: allows us to pass data down links
 
 
+## NavLink Component
+
+- It is exactly like Link component but has extra styling capabilities
+
+- By default it applies an active class to the current accessed link .active, that we can style in css
+
+- Another option is to use style and give it a function with a isActive parameter
+
+```JS
+   <NavLink 
+    style={({ isActive }) =>{
+      return isActive ? {color: "red"} : {}
+    }} 
+    to="/">
+
+      Home
+    </NavLink>
+```
+
+- Or we can pass a function as a child to display certain logic when link is active
+
+```JS
+<NavLink to="/">
+
+  {({ isActive }) => {
+    return isActive ? "Active Home" : "Home"
+  }} 
+   
+  </NavLink>
+```

@@ -4,7 +4,7 @@ import ProductsPage from "./Pages/ProductsPage"
 import Product from "./Pages/Product"
 import NewProduct from "./Pages/NewProduct"
 import NotFound from "./Pages/NotFound"
-import { Link, Route, Routes } from "react-router-dom"
+import { Link, Route, Routes, NavLink } from "react-router-dom"
 import ProductLayout from "./Productlayout"
 import ProductsRoutes from "./ProductsRoutes"
 
@@ -21,7 +21,18 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink 
+            // style={({ isActive }) =>{
+            //   return isActive ? {color: "red"} : {}
+            // }} 
+            to="/">
+
+              {/* {({ isActive }) => {
+                return isActive ? "Active Home" : "Home"
+              }} */}
+
+              Home
+            </NavLink>
           </li>
           <li>
             <Link to="/categories">Categories</Link>
@@ -35,7 +46,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/productsPage/*" element={<ProductsRoutes/>}/>
+        <Route path="/productsPage/*" element={<ProductsRoutes />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
