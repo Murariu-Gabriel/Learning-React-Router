@@ -1,8 +1,13 @@
 # NOTES
 
-React routing, a method of navigating through website pages based on url links.
+React routing is a method of navigating through website pages based on url links.
 
-## First steps: After installation
+## First step Installation
+
+- npm install react-router-dom
+
+
+## After installation
 
 - We need too import browser router
 
@@ -242,4 +247,51 @@ element = useRoutes([
   }} 
    
   </NavLink>
+```
+
+
+## Navigate Component
+
+- Works just like a link but hte idea here is that if we have this component in our main component when it renders we are going to be redirected to the path in the Navigate component. 
+
+- This works based on a component
+
+```JS
+<Navigate to="/"/>
+
+```
+
+## UseNavigate
+
+- It is a way to programmatically redirect someone on another page when certain actions are completed. 
+
+- A use case scenario for useNavigate is when you want to redirect someone to a page after a user submited of a form
+
+- It returns a function that takes 2 parameters, path and options, options being the replace and state properties
+
+
+```JS
+const navigate = useNavigate()
+
+useEffect(() => {
+  setTimeout(() => {
+    navigate("/")
+  }, 2000)
+
+}, [])
+
+```
+
+- A fun and interesting thing about useNavigate is that you can pass numbers and it will work like a back button in this case but what it does is that it access
+
+```JS
+const navigate = useNavigate()
+
+useEffect(() => {
+  setTimeout(() => {
+    navigate(-1)
+  }, 2000)
+
+}, [])
+
 ```
