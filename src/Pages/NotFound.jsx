@@ -7,7 +7,7 @@ const navigate = useNavigate()
 useEffect(() => {
   
   setTimeout(() => {
-    navigate("/")
+    navigate("/", {state: "error not found"})
   }, 2000)
 
 }, [])

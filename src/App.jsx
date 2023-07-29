@@ -1,15 +1,13 @@
 import Dashboard from "./Pages/Dashboard"
 import Categories from "./Pages/Categories"
-import ProductsPage from "./Pages/ProductsPage"
-import Product from "./Pages/Product"
-import NewProduct from "./Pages/NewProduct"
 import NotFound from "./Pages/NotFound"
-import { Link, Route, Routes, NavLink } from "react-router-dom"
-import ProductLayout from "./Productlayout"
+import { Link, Route, Routes, NavLink, useLocation } from "react-router-dom"
+
 import ProductsRoutes from "./ProductsRoutes"
 
 function App() {
-  
+  const location = useLocation()
+  console.log(location)
   return (
     <>
       {/* <Routes 
@@ -25,7 +23,7 @@ function App() {
             // style={({ isActive }) =>{
             //   return isActive ? {color: "red"} : {}
             // }} 
-            to="/">
+            to="/" >
 
               {/* {({ isActive }) => {
                 return isActive ? "Active Home" : "Home"

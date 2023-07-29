@@ -282,7 +282,7 @@ useEffect(() => {
 
 ```
 
-- A fun and interesting thing about useNavigate is that you can pass numbers and it will work like a back button in this case but what it does is that it access
+- A fun and interesting thing about useNavigate is that you can pass numbers and it will work like a back button in this case but what it does is that it goes back one page in history
 
 ```JS
 const navigate = useNavigate()
@@ -293,5 +293,31 @@ useEffect(() => {
   }, 2000)
 
 }, [])
+
+```
+
+## useSearchParams
+
+- useSearchParams works exactly like a useState the difference is that searchParams variable has a lot of methods we can use one being get so we can get a search parameter.
+
+- A note here is that you need to set parameters if you want to access them
+
+```JS
+  const [searchParams, setSearchParams] = useSearchParams({search: 0})
+```
+
+
+## useLocation
+
+- With useLocation we can we can use the state of the links or any router component that accepts a state to share data between routes without making it visible in the window
+
+```JS
+const location = useLocation()
+```
+
+- This is how location.state looks like
+
+```JS
+{pathname: '/', search: '', hash: '', state: null, key: '257ek6lm'}
 
 ```
